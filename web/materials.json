@@ -383,6 +383,30 @@
             "textbook_url": "https://img.icons8.com/ios-filled/100/communication.png",
             "unit": 3,
             "pyq_year": null
+        },
+        {
+            "branch": "IT",
+            "year": 2,
+            "semester": 1,
+            "subject": "P&S",
+            "type": "Notes",
+            "url": "https://drive.google.com/uc?export=download&id=1FbpBz4Tx4JcaqpDev9qDIJnMNwpSNpzE",
+            "title": "P&S Unit 1 Notes",
+            "textbook_url": "https://img.icons8.com/ios-filled/100/statistics.png",
+            "unit": 1,
+            "pyq_year": null
+        },
+        {
+            "branch": "IT",
+            "year": 2,
+            "semester": 1,
+            "subject": "P&S",
+            "type": "Notes",
+            "url": "https://drive.google.com/uc?export=download&id=1rMrSPu95XuWCEe8M2IFat3ngA-32cc0D",
+            "title": "P&S Unit 2 Notes",
+            "textbook_url": "https://img.icons8.com/ios-filled/100/statistics.png",
+            "unit": 2,
+            "pyq_year": null
         }
     ]
 }
