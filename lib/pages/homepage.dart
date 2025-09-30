@@ -3,8 +3,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:vjitstudyvault/pages/lab_materials.dart';
 import 'package:vjitstudyvault/pages/sem_materials_page.dart';
 import 'package:vjitstudyvault/pages/settings_page.dart';
-import 'package:dio/dio.dart';
 import 'dart:convert';
+import 'package:http/http.dart' as http;
 
 class Homepage extends StatefulWidget {
   const Homepage({super.key});
@@ -37,29 +37,28 @@ class _HomepageState extends State<Homepage> {
     });
 
     try {
-      // Load materials from Cloudflare Pages (no CORS issues)
+      // Load materials using http package instead of Dio
       final url = 'https://vjitstudyvaultjson.pages.dev/public/materials.json';
       
-      final response = await Dio().get(
-        url,
-        options: Options(
-          headers: {
-            "Cache-Control": "no-cache",
-            "Accept": "application/json",
-          },
-          responseType: ResponseType.json,
-        ),
+      final response = await http.get(
+        Uri.parse(url),
+        headers: {
+          'Cache-Control': 'no-cache',
+          'Accept': 'application/json',
+        },
       );
       
-      // Parse the materials JSON directly
-      final Map<String, dynamic> jsonData = response.data is String 
-          ? json.decode(response.data) 
-          : response.data as Map<String, dynamic>;
-      
-      setState(() {
-        _materials = jsonData['items'] ?? [];
-        _materialsLoaded = true;
-      });
+      if (response.statusCode == 200) {
+        // Parse the materials JSON directly
+        final Map<String, dynamic> jsonData = json.decode(response.body);
+        
+        setState(() {
+          _materials = jsonData['items'] ?? [];
+          _materialsLoaded = true;
+        });
+      } else {
+        throw Exception('HTTP ${response.statusCode}: Failed to load materials');
+      }
     } catch (e) {
       setState(() {
         _materials = [];
@@ -85,11 +84,10 @@ class _HomepageState extends State<Homepage> {
                   'Error: ${e.toString()}',
                   style: TextStyle(fontSize: 12),
                 ),
-                if (e is DioException)
-                  Text(
-                    'Status: ${e.response?.statusCode ?? 'No response'}\nURL: https://vjitstudyvaultjson.pages.dev/public/materials.json',
-                    style: TextStyle(fontSize: 10),
-                  ),
+                Text(
+                  'URL: https://vjitstudyvaultjson.pages.dev/public/materials.json',
+                  style: TextStyle(fontSize: 10),
+                ),
               ],
             ),
             backgroundColor: Colors.orange,
