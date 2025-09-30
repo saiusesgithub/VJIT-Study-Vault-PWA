@@ -157,8 +157,18 @@ class _PdfViewerPageState extends State<PdfViewerPage> {
         final screenWidth = MediaQuery.of(context).size.width;
         
         if (screenWidth > 600) {
-          // Desktop: Open in new browser tab
-          html.window.open(widget.url, '_blank');
+          // Desktop: Convert download link to preview link for viewing
+          String viewUrl = widget.url;
+          if (widget.url.contains('drive.google.com/uc?export=download&id=')) {
+            // Extract file ID and create preview URL
+            final RegExp regExp = RegExp(r'id=([a-zA-Z0-9_-]+)');
+            final match = regExp.firstMatch(widget.url);
+            if (match != null) {
+              final fileId = match.group(1);
+              viewUrl = 'https://drive.google.com/file/d/$fileId/view';
+            }
+          }
+          html.window.open(viewUrl, '_blank');
         } else {
           // Mobile: Open in external app (Google Drive) for better experience
           final Uri url = Uri.parse(widget.url);
