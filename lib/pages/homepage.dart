@@ -4,6 +4,7 @@ import 'package:vjitstudyvault/pages/lab_materials.dart';
 import 'package:vjitstudyvault/pages/sem_materials_page.dart';
 import 'package:vjitstudyvault/pages/settings_page.dart';
 import 'package:dio/dio.dart';
+import 'dart:convert';
 
 class Homepage extends StatefulWidget {
   const Homepage({super.key});
@@ -38,13 +39,23 @@ class _HomepageState extends State<Homepage> {
     try {
       // Load materials from Cloudflare Pages (no CORS issues)
       final url = 'https://vjitstudyvaultjson.pages.dev/public/materials.json';
+      
       final response = await Dio().get(
         url,
-        options: Options(headers: {"Cache-Control": "no-cache"}),
+        options: Options(
+          headers: {
+            "Cache-Control": "no-cache",
+            "Accept": "application/json",
+          },
+          responseType: ResponseType.json,
+        ),
       );
-
+      
       // Parse the materials JSON directly
-      final Map<String, dynamic> jsonData = response.data;
+      final Map<String, dynamic> jsonData = response.data is String 
+          ? json.decode(response.data) 
+          : response.data as Map<String, dynamic>;
+      
       setState(() {
         _materials = jsonData['items'] ?? [];
         _materialsLoaded = true;
@@ -58,15 +69,27 @@ class _HomepageState extends State<Homepage> {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Row(
+            content: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Icon(Icons.wifi_off, color: Colors.white),
-                SizedBox(width: 8),
-                Expanded(
-                  child: Text(
-                    'Unable to load materials. Please check your internet connection.',
-                  ),
+                Row(
+                  children: [
+                    Icon(Icons.error, color: Colors.white),
+                    SizedBox(width: 8),
+                    Text('Materials Loading Failed', style: TextStyle(fontWeight: FontWeight.bold)),
+                  ],
                 ),
+                SizedBox(height: 4),
+                Text(
+                  'Error: ${e.toString()}',
+                  style: TextStyle(fontSize: 12),
+                ),
+                if (e is DioException)
+                  Text(
+                    'Status: ${e.response?.statusCode ?? 'No response'}\nURL: https://vjitstudyvaultjson.pages.dev/public/materials.json',
+                    style: TextStyle(fontSize: 10),
+                  ),
               ],
             ),
             backgroundColor: Colors.orange,
@@ -95,7 +118,42 @@ class _HomepageState extends State<Homepage> {
   @override
   Widget build(BuildContext context) {
     if (!_prefsLoaded || !_materialsLoaded) {
-      return const Scaffold(body: Center(child: CircularProgressIndicator()));
+      return Scaffold(
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              CircularProgressIndicator(),
+              SizedBox(height: 20),
+              Text('Loading materials...'),
+              if (_materialsLoaded && _materials.isEmpty)
+                Container(
+                  margin: EdgeInsets.all(20),
+                  padding: EdgeInsets.all(15),
+                  decoration: BoxDecoration(
+                    color: Colors.red.shade50,
+                    border: Border.all(color: Colors.red),
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: Column(
+                    children: [
+                      Text('DEBUG INFO:', style: TextStyle(fontWeight: FontWeight.bold)),
+                      SizedBox(height: 8),
+                      Text('Materials loaded: $_materialsLoaded'),
+                      Text('Materials count: ${_materials.length}'),
+                      Text('URL: https://vjitstudyvaultjson.pages.dev/public/materials.json'),
+                      SizedBox(height: 8),
+                      ElevatedButton(
+                        onPressed: _loadMaterials,
+                        child: Text('Retry Loading'),
+                      ),
+                    ],
+                  ),
+                ),
+            ],
+          ),
+        ),
+      );
     }
     Widget body;
     switch (currentIndex) {
