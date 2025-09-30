@@ -102,7 +102,7 @@ https://github.com/user-attachments/assets/1a1238f8-349c-4031-b768-61e1aaa4d48e
 ### 🚀 Advanced PWA Technology
 - **Smart PDF Handling**: `pdfx` ^2.6.0 for mobile + web browser PDF viewer for desktop
 - **CORS-Free Loading**: Materials loaded via `http` ^1.1.0 from same domain (no CORS issues)
-- **Firebase Integration**: Real-time sync and analytics via `firebase_core` ^4.1.1
+- **Analytics Integration**: Cloudflare Web Analytics for PWA metrics + Firebase Analytics for mobile apps
 
 ---
 
@@ -115,7 +115,8 @@ https://github.com/user-attachments/assets/1a1238f8-349c-4031-b768-61e1aaa4d48e
 | **PDF Rendering** | `pdfx` ^2.6.0 + Web fallback | High-performance PDF viewing | Mobile: pdfx native, Web: browser PDF |
 | **Networking** | `http` ^1.1.0 + `dio` ^5.0.0 | CORS-free same-domain + fallback requests | Universal |
 | **Local Storage** | `shared_preferences` ^2.5.3 | Cross-platform preferences (Web: localStorage) | All platforms |
-| **Analytics** | `firebase_analytics` ^12.0.2 | User behavior tracking & insights | Web + Mobile |
+| **PWA Analytics** | Cloudflare Web Analytics | Real-time page views & unique visitor tracking | Web (PWA) |
+| **Mobile Analytics** | `firebase_analytics` ^12.0.2 | Detailed user behavior & event tracking | Mobile Apps |
 | **Cloud Backend** | `firebase_core` ^4.1.1 | Authentication & real-time updates | Universal |
 | **Content Delivery** | Google Drive API + Cloudflare CDN | PDF streaming & materials metadata | Global edge locations |
 | **Hosting & CI/CD** | Cloudflare Pages + GitHub Actions | Automated PWA deployment | Worldwide |
@@ -211,8 +212,8 @@ Upcoming enhancements focused on PWA optimization and user experience:
 
 | Version | Date | Platform | Key Features |
 |:---|:---|:---|:---|
-| **PWA v1.0** | 30/08/2025 | Web + Mobile | Progressive Web App with offline support, Firebase analytics, cross-platform PDF viewing, automated CI/CD |
-| **Mobile v1.0** | 29/08/2025 | Android/iOS | Initial Flutter mobile app with PDF viewing, secure downloads, Google Drive integration |
+| **PWA v1.0** | 30/09/2025 | Web + Mobile | Progressive Web App with offline support, Cloudflare Analytics, cross-platform PDF viewing, automated CI/CD |
+| **Mobile v1.0** | 29/09/2025 | Android/iOS | Initial Flutter mobile app with PDF viewing, secure downloads, Google Drive integration |
 
 
 ---
