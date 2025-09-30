@@ -37,7 +37,7 @@ class _HomepageState extends State<Homepage> {
 
     try {
       // Load materials from Cloudflare Pages (no CORS issues)
-      final url = 'https://vjitstudyvaultjson.pages.dev/materials.json';
+      final url = 'https://vjitstudyvaultjson.pages.dev/public/materials.json';
       final response = await Dio().get(
         url,
         options: Options(headers: {"Cache-Control": "no-cache"}),
