@@ -139,7 +139,7 @@ class SemMaterialsPage extends StatelessWidget {
                     crossAxisCount: 2,
                     crossAxisSpacing: 12,
                     mainAxisSpacing: 12,
-                    childAspectRatio: 1.2,
+                    childAspectRatio: 1.8, // Increased from 1.2 to make cards shorter
                   ),
                   itemCount: filteredMaterials.length,
                   itemBuilder: (context, index) {

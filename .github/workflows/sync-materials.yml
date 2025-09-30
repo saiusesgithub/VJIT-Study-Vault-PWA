@@ -1,0 +1,39 @@
+name: Sync Materials JSON
+
+on:
+  # Trigger manually or on schedule
+  workflow_dispatch:
+  schedule:
+    # Check for updates every 6 hours
+    - cron: '0 */6 * * *'
+
+jobs:
+  sync-materials:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout PWA repo
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          
+      - name: Download latest materials.json
+        run: |
+          curl -fsSL https://vjitstudyvaultjson.pages.dev/public/materials.json -o temp_materials.json
+          
+      - name: Check if materials changed
+        run: |
+          if ! cmp -s temp_materials.json web/materials.json; then
+            echo "MATERIALS_CHANGED=true" >> $GITHUB_ENV
+            cp temp_materials.json web/materials.json
+          else
+            echo "MATERIALS_CHANGED=false" >> $GITHUB_ENV
+          fi
+          
+      - name: Commit and push if changed
+        if: env.MATERIALS_CHANGED == 'true'
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add web/materials.json
+          git commit -m "🔄 Auto-sync materials.json from materials repo"
+          git push

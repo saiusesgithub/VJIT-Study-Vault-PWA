@@ -60,7 +60,7 @@ class SubjectRelatedMaterialsPage extends StatelessWidget {
                   crossAxisCount: 2,
                   crossAxisSpacing: 12,
                   mainAxisSpacing: 12,
-                  childAspectRatio: 1.2,
+                  childAspectRatio: 1.8, // Increased from 1.2 to make cards shorter
                 ),
                 itemCount: uniqueTypes.length,
                 itemBuilder: (context, index) {
@@ -216,7 +216,18 @@ class _PdfViewerPageState extends State<PdfViewerPage> {
         errorMessage = null;
       });
 
-      // For all platforms, download bytes and use PdfDocument.openData
+      // For web PWA, use URL directly instead of downloading bytes
+      if (kIsWeb) {
+        // On web, open PDF in new tab instead of in-app viewer
+        final Uri url = Uri.parse(widget.url);
+        if (await canLaunchUrl(url)) {
+          await launchUrl(url, mode: LaunchMode.externalApplication);
+        }
+        Navigator.of(context).pop(); // Close the PDF viewer page
+        return;
+      }
+      
+      // For mobile platforms, download bytes and use PdfDocument.openData
       final response = await Dio().get(
         widget.url,
         options: Options(responseType: ResponseType.bytes),
