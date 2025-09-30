@@ -37,8 +37,8 @@ class _HomepageState extends State<Homepage> {
     });
 
     try {
-      // Try to load from remote URL first
-      final url = 'https://vjit-study-vault.web.app/materials.json';
+      // Use CORS proxy to access Firebase hosting
+      final url = 'https://api.allorigins.win/get?url=${Uri.encodeComponent('https://vjit-study-vault.web.app/materials.json')}';
       final response = await Dio().get(
         url,
         options: Options(
@@ -47,18 +47,16 @@ class _HomepageState extends State<Homepage> {
         ),
       );
 
-      // Check if response is actually JSON
-      if (response.data.toString().trim().startsWith('{')) {
-        final Map<String, dynamic> jsonData = json.decode(response.data);
-        setState(() {
-          _materials = jsonData['items'] ?? [];
-          _materialsLoaded = true;
-        });
-      } else {
-        throw Exception(
-          'Invalid JSON response - received HTML or other content',
-        );
-      }
+      // Parse CORS proxy response
+      final Map<String, dynamic> proxyResponse = json.decode(response.data);
+      final String actualContent = proxyResponse['contents'];
+      
+      // Parse the actual materials JSON
+      final Map<String, dynamic> jsonData = json.decode(actualContent);
+      setState(() {
+        _materials = jsonData['items'] ?? [];
+        _materialsLoaded = true;
+      });
     } catch (e) {
       setState(() {
         _materials = [];
