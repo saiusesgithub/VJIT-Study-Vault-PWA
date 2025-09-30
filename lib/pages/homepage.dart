@@ -3,7 +3,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:vjitstudyvault/pages/lab_materials.dart';
 import 'package:vjitstudyvault/pages/sem_materials_page.dart';
 import 'package:vjitstudyvault/pages/settings_page.dart';
-import 'dart:convert';
 import 'package:dio/dio.dart';
 
 class Homepage extends StatefulWidget {
@@ -37,22 +36,16 @@ class _HomepageState extends State<Homepage> {
     });
 
     try {
-      // Use CORS proxy to access Firebase hosting
-      final url = 'https://api.allorigins.win/get?url=${Uri.encodeComponent('https://vjit-study-vault.web.app/materials.json')}';
+      // Use thingproxy.freeboard.io CORS proxy
+      final url =
+          'https://thingproxy.freeboard.io/fetch/https://vjit-study-vault.web.app/materials.json';
       final response = await Dio().get(
         url,
-        options: Options(
-          responseType: ResponseType.plain,
-          headers: {"Cache-Control": "no-cache", "Accept": "application/json"},
-        ),
+        options: Options(headers: {"Cache-Control": "no-cache"}),
       );
 
-      // Parse CORS proxy response
-      final Map<String, dynamic> proxyResponse = json.decode(response.data);
-      final String actualContent = proxyResponse['contents'];
-      
-      // Parse the actual materials JSON
-      final Map<String, dynamic> jsonData = json.decode(actualContent);
+      // Parse the materials JSON directly
+      final Map<String, dynamic> jsonData = response.data;
       setState(() {
         _materials = jsonData['items'] ?? [];
         _materialsLoaded = true;
