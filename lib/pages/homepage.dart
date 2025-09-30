@@ -43,14 +43,22 @@ class _HomepageState extends State<Homepage> {
         url,
         options: Options(
           responseType: ResponseType.plain,
-          headers: {"Cache-Control": "no-cache"},
+          headers: {"Cache-Control": "no-cache", "Accept": "application/json"},
         ),
       );
-      final Map<String, dynamic> jsonData = json.decode(response.data);
-      setState(() {
-        _materials = jsonData['items'] ?? [];
-        _materialsLoaded = true;
-      });
+
+      // Check if response is actually JSON
+      if (response.data.toString().trim().startsWith('{')) {
+        final Map<String, dynamic> jsonData = json.decode(response.data);
+        setState(() {
+          _materials = jsonData['items'] ?? [];
+          _materialsLoaded = true;
+        });
+      } else {
+        throw Exception(
+          'Invalid JSON response - received HTML or other content',
+        );
+      }
     } catch (e) {
       setState(() {
         _materials = [];
