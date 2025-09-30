@@ -37,8 +37,8 @@ class _HomepageState extends State<Homepage> {
     });
 
     try {
-      // Load materials using http package instead of Dio
-      final url = 'https://vjitstudyvaultjson.pages.dev/public/materials.json';
+      // Load materials from same domain - no CORS issues!
+      final url = 'materials.json';
       
       final response = await http.get(
         Uri.parse(url),
