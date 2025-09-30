@@ -1,16 +1,18 @@
-# 🎓 VJIT Study Vault
+# 🎓 VJIT Study Vault PWA
 
 <div align="center">
 <img src="assets/logos/VjitLogo.png" alt="App Logo" width="300" height="300">
 
-*Your Complete Academic Companion for VJIT Students*
+*Your Complete Academic Companion - Now Accessible Anywhere, On Any Device*
 
-[![Flutter](https://img.shields.io/badge/Flutter-3.0+-02569B?style=for-the-badge&logo=flutter&logoColor=white)](https://flutter.dev)
-[![Dart](https://img.shields.io/badge/Dart-3.0+-0175C2?style=for-the-badge&logo=dart&logoColor=white)](https://dart.dev)
+[![Flutter](https://img.shields.io/badge/Flutter-3.24+-02569B?style=for-the-badge&logo=flutter&logoColor=white)](https://flutter.dev)
+[![Dart](https://img.shields.io/badge/Dart-3.9+-0175C2?style=for-the-badge&logo=dart&logoColor=white)](https://dart.dev)
 [![Firebase](https://img.shields.io/badge/Firebase-FFCA28?style=for-the-badge&logo=firebase&logoColor=black)](https://firebase.google.com)
+[![PWA](https://img.shields.io/badge/PWA-Ready-5A0FC8?style=for-the-badge&logo=pwa&logoColor=white)](https://web.dev/progressive-web-apps/)
+[![Cloudflare](https://img.shields.io/badge/Cloudflare-F38020?style=for-the-badge&logo=cloudflare&logoColor=white)](https://www.cloudflare.com/)
 [![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](LICENSE)
 
-[📱 Download APK](#download) • [📖 Features](#features) • [🚀 Getting Started](#getting-started) • [🤝 Contributing](#contributing)
+[🌐 Open PWA](#live-pwa) • [📱 Download APK](#download) • [📖 Features](#features) • [🚀 Getting Started](#getting-started) • [🤝 Contributing](#contributing)
 
 </div>
 
@@ -18,11 +20,32 @@
 
 ## 💡 Overview
 
+### Evolution: From Mobile App to Universal PWA
+**VJIT Study Vault** has evolved from a mobile-only application to a **Progressive Web App (PWA)**, making academic resources accessible on **any device with a browser** - laptops, tablets, phones, and desktops.
+
 ### Problem
-Students often struggle to find **scattered study materials** across various WhatsApp groups and cloud drives. This leads to wasted time and difficulty in preparing for exams.
+Students struggle with **scattered study materials** across various platforms and need access from multiple devices - their phones during commute, laptops during study sessions, and tablets during classes.
 
 ### Solution
-**VJIT Study Vault** centralizes all necessary materials in one clean, efficient mobile application. It provides **personalized access** to content based on the student's **branch, year, and semester**, ensuring they see only what they need.
+Our **PWA solution** centralizes all academic materials in a **cross-platform web application** that works seamlessly across all devices. It provides **personalized access** based on branch, year, and semester, with **offline capabilities** and **native-like performance**.
+
+---
+
+## 🌐 Live PWA
+
+<div align="center">
+
+### 🚀 Access Instantly - No Installation Required
+
+[![Open PWA](https://img.shields.io/badge/🌐-Open%20PWA-4285F4?style=for-the-badge&logo=googlechrome)](https://vjitstudyvault.pages.dev)
+
+*Works on **all devices** - Desktop, Mobile, Tablet | **Offline Support** | **Install as App***
+
+### 📱 Also Available as Native App
+
+[![Download APK](https://img.shields.io/badge/📱-Download%20APK-3DDC84?style=for-the-badge&logo=android)](https://github.com/saiusesgithub/VJIT-Study-Vault/releases)
+
+</div>
 
 ---
 
@@ -32,8 +55,6 @@ Students often struggle to find **scattered study materials** across various Wha
 
 https://github.com/user-attachments/assets/1a1238f8-349c-4031-b768-61e1aaa4d48e
 
-
----
 
 ---
 
@@ -51,98 +72,88 @@ https://github.com/user-attachments/assets/1a1238f8-349c-4031-b768-61e1aaa4d48e
 
 ---
 
-## ✨ Features
+## ✨ PWA Features
 
-### 🎯 Personalized Academic Experience
-- **Smart Onboarding**: Quick, one-time setup based on your branch, year, and semester.
-- **Curated Content**: Automatically filters and displays *only* materials relevant to your academic profile.
-- **Offline Access**: Download and access PDFs anytime, anywhere, without an internet connection.
+### � Universal Cross-Platform Access
+- **Web-First Design**: Access from any browser on any device - Windows, Mac, Linux, Android, iOS
+- **Responsive Layout**: Automatically adapts to desktop (wide screens), tablet (medium), and mobile (narrow) viewports  
+- **No Installation Required**: Instant access via web browser at [vjitstudyvault.pages.dev](https://vjitstudyvault.pages.dev)
+- **Progressive Enhancement**: Works even on slow networks with graceful degradation
 
-### 📚 Comprehensive Study Materials
-- 📄 **Subject Notes** - Chapter-wise organized study notes.
-- 📝 **Question Banks** - Practice questions for comprehensive exam preparation.
-- 🎯 **Previous Year Papers** - Year-wise collections of official PYQs.
-- 🔬 **Lab Manuals** - Practical experiment guides.
-- 📋 **Assignments** - Course-specific assignments and their solutions.
+### 📱 Native App-Like Experience  
+- **Installable PWA**: Add to home screen on mobile or install as desktop app
+- **Offline Support**: Browse downloaded materials without internet connection
+- **Fast Loading**: Cached resources for instant subsequent loads via Service Workers
+- **Smart Onboarding**: One-time setup with `introduction_screen` ^4.0.0 package
 
-### 🚀 Advanced PDF Management
-- **Native PDF Rendering**: Smooth, high-quality viewing experience with the `pdfx` library.
-- **Intuitive Navigation**: Scrollbar with page indicators for easy browsing.
-- **Quick Access**: Direct **Google Drive integration** for instant material sourcing.
-- **Download Management**: MediaStore-compliant file saving for modern Android versions (10+).
+### 🎯 Smart Academic Personalization
+- **Cross-Device Sync**: Your preferences sync across all devices via Firebase
+- **Branch-Based Filtering**: See only materials relevant to your CSE/IT/ECE/EEE/MECH/CIVIL branch  
+- **Year & Semester Organization**: Content automatically organized by your current academic level
+- **Persistent Settings**: Configuration stored with `shared_preferences` ^2.5.3
 
-### 🎨 Modern UI/UX
-- **Material Design 3**: A clean, intuitive interface following Google's latest design standards.
-- **Enhanced Readability**: Utilizes the **Orbitron** font family for a distinct, modern look.
-- **Responsive Layout**: Optimized to look great on all mobile screen sizes.
+### 📚 Enhanced Study Materials Access
+- 📄 **Subject Notes** - Optimized for both mobile reading and desktop studying
+- 📝 **Question Banks** - Interactive practice sessions across devices  
+- 🎯 **Previous Year Papers** - Full-screen viewing on desktop, mobile-optimized on phones
+- 🔬 **Lab Manuals** - Step-by-step guides accessible during practicals
+- 📋 **Assignments** - Downloadable resources with cross-platform compatibility
 
----
-
-## 🔧 Technology Stack
-
-| Component | Technology | Purpose |
-|:---|:---|:---|
-| **Frontend** | Flutter 3.0+ | Cross-platform mobile application development |
-| **PDF Rendering** | `pdfx` | High-performance PDF viewing |
-| **Networking** | `Dio` | Efficient HTTP requests and file downloads |
-| **Local Storage** | `SharedPreferences` | User preferences and state persistence |
-| **Analytics** | Firebase Analytics | Usage tracking and performance insights |
-| **Cloud Storage** | Google Drive API | PDF hosting and seamless content delivery |
-| **Database/Hosting** | Firebase Hosting | Hosting the central JSON database for materials |
+### 🚀 Advanced PWA Technology
+- **Smart PDF Handling**: `pdfx` ^2.6.0 for mobile + web browser PDF viewer for desktop
+- **CORS-Free Loading**: Materials loaded via `http` ^1.1.0 from same domain (no CORS issues)
+- **Firebase Integration**: Real-time sync and analytics via `firebase_core` ^4.1.1
 
 ---
 
-## 🚀 Getting Started
+## 🔧 PWA Technology Stack
 
-### Prerequisites
+| Component | Technology | Purpose | Platform Support |
+|:---|:---|:---|:---|
+| **Frontend Framework** | Flutter 3.24+ Web | Cross-platform PWA development | All browsers |
+| **PWA Core** | Service Workers + Web App Manifest | Offline caching & installability | All modern browsers |
+| **PDF Rendering** | `pdfx` ^2.6.0 + Web fallback | High-performance PDF viewing | Mobile: pdfx native, Web: browser PDF |
+| **Networking** | `http` ^1.1.0 + `dio` ^5.0.0 | CORS-free same-domain + fallback requests | Universal |
+| **Local Storage** | `shared_preferences` ^2.5.3 | Cross-platform preferences (Web: localStorage) | All platforms |
+| **Analytics** | `firebase_analytics` ^12.0.2 | User behavior tracking & insights | Web + Mobile |
+| **Cloud Backend** | `firebase_core` ^4.1.1 | Authentication & real-time updates | Universal |
+| **Content Delivery** | Google Drive API + Cloudflare CDN | PDF streaming & materials metadata | Global edge locations |
+| **Hosting & CI/CD** | Cloudflare Pages + GitHub Actions | Automated PWA deployment | Worldwide |
+| **Typography** | Poppins + Orbitron fonts | Professional, readable design | All platforms |
 
-- **Flutter SDK** ($\ge$ 3.0)
-- **Dart SDK** ($\ge$ 3.0)
-- **Git**
-- An IDE (Android Studio or VS Code)
 
-### Installation Steps
+### 🤖 Automated CI/CD Pipeline
+| Workflow | Purpose | Trigger | Technology |
+|:---|:---|:---|:---|
+| **PWA Build & Deploy** | Automatic deployment to Cloudflare Pages | Push to main branch | GitHub Actions + Flutter Web |
+| **Materials Sync** | Updates study materials database | Every 6 hours + manual | CRON + API integration |
 
-1.  **Clone the repository:**
-    ```bash
-    git clone [https://github.com/saiusesgithub/vjitstudyvault.git](https://github.com/saiusesgithub/vjitstudyvault.git)
-    cd vjitstudyvault
-    ```
 
-2.  **Install dependencies:**
-    ```bash
-    flutter pub get
-    ```
 
-3.  **Firebase Setup** (for development/testing):
-    * Add your `google-services.json` to `android/app/`
-    * Add your `GoogleService-Info.plist` to `ios/Runner/`
-
-4.  **Run the app:**
-    ```bash
-    flutter run
-    ```
-
-### 🏗 Build for Production
-
-| Platform | Command |
-|:---|:---|
-| **Android APK** | `flutter build apk --release` |
-| **iOS IPA** | `flutter build ios --release` |
-| **Web** | `flutter build web --release` |
+#### � Continuous Deployment Features:
+- **Smart Build Triggers**: Only rebuilds when code changes (excludes materials.json updates)
+- **Path-Based Filtering**: Monitors `lib/`, `web/`, `pubspec.yaml` for relevant changes
+- **Cloudflare Integration**: Direct deployment to global CDN edge locations
+- **Automated Material Updates**: Syncs with external materials database every 6 hours
 
 ---
 
-## 📥 Download
+## 🌐 Live Access & Downloads
 
 <div align="center">
 
-### 📱 Get VJIT Study Vault
+### � Instant PWA Access
 
-[![Download APK](https://img.shields.io/badge/Download-Latest%20APK-success?style=for-the-badge&logo=android)](https://github.com/saiusesgithub/VJIT-Study-Vault/releases/tag/v1.0)
+[![Open PWA](https://img.shields.io/badge/🌐-Launch%20PWA-4285F4?style=for-the-badge&logo=googlechrome)](https://vjitstudyvault.pages.dev)
+
+*No downloads • Works everywhere • Always updated • Install optional*
+
+### 📱 Mobile Apps
+
+[![Android APK](https://img.shields.io/badge/📱-Download%20APK-3DDC84?style=for-the-badge&logo=android)](https://github.com/saiusesgithub/VJIT-Study-Vault/releases)
 
 
-*Latest Version: **v1.0.0** | **Size: approx 50MB** | **Min Android**: 5.0 (Lollipop)+*
+*APK Size: ~50MB | Min Android: 5.0+ | PWA Alternative: 0MB (browser)*
 
 </div>
 
@@ -154,60 +165,55 @@ https://github.com/user-attachments/assets/1a1238f8-349c-4031-b768-61e1aaa4d48e
 
 | Branch | Years | Semesters |
 |:---|:---|:---|
-| **Computer Science & Engineering (CSE)** | 1st - 4th | 1st & 2nd |
-| **Information Technology (IT)** | 1st - 4th | 1st & 2nd |
-| **Artificial Intelligence & ML (AIML)** | 1st - 4th | 1st & 2nd |
-| **Data Science (DS)** | 1st - 4th | 1st & 2nd |
-| **Electronics & Communication (ECE)** | 1st - 4th | 1st & 2nd |
-| **Electrical & Electronics (EEE)** | 1st - 4th | 1st & 2nd |
+| **Computer Science & Engineering (CSE)** | 1st - 4th | 1st & 2nd | ✅ PWA + APK |
+| **Information Technology (IT)** | 1st - 4th | 1st & 2nd | ✅ PWA + APK |
+| **Electronics & Communication (ECE)** | 1st - 4th | 1st & 2nd | ✅ PWA + APK |
+| **Electrical & Electronics (EEE)** | 1st - 4th | 1st & 2nd | ✅ PWA + APK |
+| **Mechanical Engineering (MECH)** | 1st - 4th | 1st & 2nd | ✅ PWA + APK |
+| **Civil Engineering (CIVIL)** | 1st - 4th | 1st & 2nd | ✅ PWA + APK |
 
-*More branches and programs coming soon!*
+*All branches fully supported across PWA and mobile platforms*
 
 </div>
 
 ---
 
-## 🤝 Contributing
-
-We welcome contributions from the community! There are many ways to help improve VJIT Study Vault:
-
-### 📋 Ways to Contribute
-
-- 🐛 **Report Bugs**: Found an issue? Open a new issue with a clear description.
-- 💡 **Suggest Features**: Share your ideas for new functionalities.
-- 📚 **Add Study Materials**: Contribute your high-quality notes, question banks, or papers.
-- 🔧 **Code Contributions**: Help improve the app's performance and add new features.
-- 📖 **Documentation**: Enhance our guides and documentation.
-
-### 🔧 Development Setup
-
-1.  **Fork** the repository.
-2.  Create a feature branch: `git checkout -b feature/amazing-feature`
-3.  Commit your changes: `git commit -m 'feat: Add amazing feature'`
-4.  Push to the branch: `git push origin feature/amazing-feature`
-5.  **Open a Pull Request** (PR).
+### 🌍 Global Deployment Architecture
+- **Hosting**: Cloudflare Pages (300+ global edge locations)
+- **CDN**: Cloudflare CDN for static assets
+- **Materials Database**: JSON API hosted separately for updates
+- **Auto-Sync**: GitHub Actions sync materials every 6 hours
+- **SSL**: Automatic HTTPS via Cloudflare SSL
 
 ---
 
-## 🚧 Roadmap
+## 🚧 PWA Roadmap
 
-### 🔮 Upcoming Features
-We're excited to announce the next set of features planned for the app:
+### 🔮 Next Version Features
+Upcoming enhancements focused on PWA optimization and user experience:
 
-| Status | Feature |
-|:---|:---|
-| [ ] | **Offline Sync** - Download entire subjects for comprehensive offline access. |
-| [ ] | **Study Planner** - AI-powered recommendations for a personalized study schedule. |
-| [ ] | **Video Lectures** - Integrated support for video content. |
-| [ ] | **Exam Reminders** - A smart notification system for important dates. |
+| Status | PWA Feature | Description |
+|:---|:---|:---|
+| [ ] | **Advanced Offline Mode** | Service Worker with background sync for complete offline access |
+| [ ] | **PWA Install Prompts** | Smart install banners with usage-based prompting |
+| [ ] | **Push Notifications** | Exam reminders and new material alerts via Web Push API | Q2 2025 |
+| [ ] | **Dark Mode Theme** | System-aware dark/light theme with user preferences | Q1 2025 |
+| [ ] | **Advanced Analytics** | Detailed study patterns and progress tracking | Q2 2025 |
+| [ ] | **Video Integration** | Native video streaming with offline caching | Q2 2025 |
+| [ ] | **Study Planner** | AI-powered personalized study schedules | Q3 2025 |
+| [ ] | **Collaborative Notes** | Real-time shared note-taking and study groups | Q3 2025 |
 
-*(For a complete list of planned tasks, see the [Todo File](/TODO.txt).)*
+
+
+*(For detailed technical tasks, see [TODO.txt](/TODO.txt))*
 
 ### 📅 Version History
 
-| Version | Date | Key Features |
-|:---|:---|:---|
-| **v1.0** | 29/09/2025 | Initial release with PDF viewing, secure downloads, and Google Drive integration. |
+| Version | Date | Platform | Key Features |
+|:---|:---|:---|:---|
+| **PWA v1.0** | 30/08/2025 | Web + Mobile | Progressive Web App with offline support, Firebase analytics, cross-platform PDF viewing, automated CI/CD |
+| **Mobile v1.0** | 29/08/2025 | Android/iOS | Initial Flutter mobile app with PDF viewing, secure downloads, Google Drive integration |
+
 
 ---
 
