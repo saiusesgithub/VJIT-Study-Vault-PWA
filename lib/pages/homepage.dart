@@ -36,9 +36,8 @@ class _HomepageState extends State<Homepage> {
     });
 
     try {
-      // Use thingproxy.freeboard.io CORS proxy
-      final url =
-          'https://thingproxy.freeboard.io/fetch/https://vjit-study-vault.web.app/materials.json';
+      // Load materials from Cloudflare Pages (no CORS issues)
+      final url = 'https://vjitstudyvaultjson.pages.dev/materials.json';
       final response = await Dio().get(
         url,
         options: Options(headers: {"Cache-Control": "no-cache"}),
