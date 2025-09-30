@@ -135,11 +135,12 @@ class SemMaterialsPage extends StatelessWidget {
                 child: GridView.builder(
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
                     crossAxisSpacing: 12,
                     mainAxisSpacing: 12,
-                    childAspectRatio: 1.8, // Increased from 1.2 to make cards shorter
+                    // Responsive aspect ratio: shorter on desktop, taller on mobile
+                    childAspectRatio: MediaQuery.of(context).size.width > 600 ? 1.8 : 1.3,
                   ),
                   itemCount: filteredMaterials.length,
                   itemBuilder: (context, index) {

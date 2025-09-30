@@ -56,11 +56,12 @@ class SubjectRelatedMaterialsPage extends StatelessWidget {
               child: GridView.builder(
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
                   crossAxisSpacing: 12,
                   mainAxisSpacing: 12,
-                  childAspectRatio: 1.8, // Increased from 1.2 to make cards shorter
+                  // Responsive aspect ratio: shorter on desktop, taller on mobile
+                  childAspectRatio: MediaQuery.of(context).size.width > 600 ? 1.8 : 1.3,
                 ),
                 itemCount: uniqueTypes.length,
                 itemBuilder: (context, index) {
@@ -216,14 +217,21 @@ class _PdfViewerPageState extends State<PdfViewerPage> {
         errorMessage = null;
       });
 
-      // For web PWA, use URL directly instead of downloading bytes
+      // For web, different behavior based on device
       if (kIsWeb) {
-        // On web, open PDF in new tab instead of in-app viewer
-        final Uri url = Uri.parse(widget.url);
-        if (await canLaunchUrl(url)) {
-          await launchUrl(url, mode: LaunchMode.externalApplication);
+        final screenWidth = MediaQuery.of(context).size.width;
+        
+        if (screenWidth > 600) {
+          // Desktop: Open in new browser tab
+          html.window.open(widget.url, '_blank');
+        } else {
+          // Mobile: Open in external app (Google Drive) for better experience
+          final Uri url = Uri.parse(widget.url);
+          if (await canLaunchUrl(url)) {
+            await launchUrl(url, mode: LaunchMode.externalApplication);
+          }
         }
-        Navigator.of(context).pop(); // Close the PDF viewer page
+        Navigator.of(context).pop();
         return;
       }
       
